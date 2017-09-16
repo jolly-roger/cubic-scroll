@@ -1,0 +1,36 @@
+{
+  "name": "fluid-scroll",
+  "version": "1.0.0",
+  "description": "Modern smooth (fluid) scroll implementation based on requestAnimationFrame",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "npm run build",
+    "build": "rollup -c rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jolly-roger/fluid-scroll.git"
+  },
+  "keywords": [
+    "smooth",
+    "fluid",
+    "scroll",
+    "requestAnimationFrame"
+  ],
+  "author": {
+    "name": "Igor Onyshchenko",
+    "email": "igor.onyshchenko@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jolly-roger/fluid-scroll/issues"
+  },
+  "homepage": "https://github.com/jolly-roger/fluid-scroll#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-uglify": "^2.0.1"
+  }
+}
