@@ -1,5 +1,5 @@
 {
-  "name": "fluid-scroll",
+  "name": "cubic-scroll",
   "version": "1.0.0",
   "description": "Extremely lightweight modern implementation of scroll with easing effect based on cubic function and rendering based on requestAnimationFrame",
   "main": "dist/index.js",
