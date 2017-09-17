@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="scroll-view.css">
+    <script type="text/javascript" src="../../dist/index.js" ></script>
+  </head>
+  <body>
+    <div class="menu">
+      <a href="#section-0"
+        onclick="fluidScroll.handleLinkClick(event, {scrollView: document.querySelector('.content')})">Link 0</a>
+      <a href="#section-1"
+        onclick="fluidScroll.handleLinkClick(event, {scrollView: document.querySelector('.content')})">Link 1</a>
+      <a href="#section-2"
+        onclick="fluidScroll.handleLinkClick(event, {scrollView: document.querySelector('.content')})">Link 2</a>
+    </div>
+    <div class="content">
+      <div id="section-0">Section 0</div>
+      <div id="section-1">Section 1</div>
+      <div id="section-2">Section 2</div>
+    </div>
+  </body>
+</html>

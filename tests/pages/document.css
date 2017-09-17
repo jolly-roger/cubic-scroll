@@ -1,0 +1,28 @@
+.menu {
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 500px;
+}
+
+#section-0, #section-1, #section-2 {
+  height: 1000px;
+}
+
+#section-0 {
+  background-color: #00FFFF;
+}
+
+#section-1 {
+  background-color: #00FF00;
+}
+
+#section-2 {
+  background-color: #FFFF00;
+}

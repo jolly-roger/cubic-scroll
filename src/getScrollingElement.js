@@ -1,7 +1,9 @@
-export default function getScrollingElement() {
-  if (typeof document.scrollingElement !== 'undefined') {
-    return document.scrollingElement;
+export default function getScrollingElement(documentEl) {
+  const doc = documentEl || document;
+
+  if (doc.scrollingElement) {
+    return doc.scrollingElement;
   }
 
-  return (typeof document.documentElement !== 'undefined') ? document.documentElement : document.body;
+  return (doc.documentElement) ? doc.documentElement : doc.body;
 }
