@@ -14,11 +14,11 @@ function getScrollingElement(documentEl) {
   return doc.documentElement ? doc.documentElement : doc.body;
 }
 
-var SCROLL_SPEED = 20;
+var SPEED = 20;
 
 var scrollingElement = void 0;
 var targetTop = void 0;
-var scrollSpeed = void 0;
+var speed = void 0;
 
 function scroll() {
   var currentTop = scrollingElement.scrollTop;
@@ -27,9 +27,9 @@ function scroll() {
     var nextTop = void 0;
 
     if (currentTop < targetTop) {
-      nextTop = currentTop + SCROLL_SPEED > targetTop ? targetTop : currentTop + scrollSpeed;
+      nextTop = currentTop + SPEED > targetTop ? targetTop : currentTop + speed;
     } else {
-      nextTop = currentTop - SCROLL_SPEED < targetTop ? targetTop : currentTop - scrollSpeed;
+      nextTop = currentTop - SPEED < targetTop ? targetTop : currentTop - speed;
     }
 
     window.requestAnimationFrame(function () {
@@ -43,7 +43,7 @@ function scrollTo(targetEl) {
   var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   scrollingElement = opts.scrollView || getScrollingElement();
-  scrollSpeed = opts.scrollSpeed || SCROLL_SPEED;
+  speed = opts.speed || SPEED;
   targetTop = targetEl.offsetTop - (opts.marginTop || 0);
 
   if (scrollingElement && typeof targetTop === 'number') {

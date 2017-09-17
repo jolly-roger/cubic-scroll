@@ -1,10 +1,10 @@
 import getScrollingElement from './getScrollingElement';
 
-const SCROLL_SPEED = 20;
+const SPEED = 20;
 
 let scrollingElement;
 let targetTop;
-let scrollSpeed;
+let speed;
 
 function scroll() {
   const currentTop = scrollingElement.scrollTop;
@@ -13,11 +13,11 @@ function scroll() {
     let nextTop;
 
     if (currentTop < targetTop) {
-      nextTop = ((currentTop + SCROLL_SPEED) > targetTop) ?
-        targetTop : (currentTop + scrollSpeed);
+      nextTop = ((currentTop + SPEED) > targetTop) ?
+        targetTop : (currentTop + speed);
     } else {
-      nextTop = ((currentTop - SCROLL_SPEED) < targetTop) ?
-        targetTop : (currentTop - scrollSpeed);
+      nextTop = ((currentTop - SPEED) < targetTop) ?
+        targetTop : (currentTop - speed);
     }
 
     window.requestAnimationFrame(() => {
@@ -29,7 +29,7 @@ function scroll() {
 
 export function scrollTo(targetEl, opts = {}) {
   scrollingElement = opts.scrollView || getScrollingElement();
-  scrollSpeed = opts.scrollSpeed || SCROLL_SPEED;
+  speed = opts.speed || SPEED;
   targetTop = targetEl.offsetTop - (opts.marginTop || 0);
 
   if (scrollingElement && typeof targetTop === 'number') {
