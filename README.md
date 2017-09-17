@@ -10,6 +10,7 @@ $ npm install cubic-scroll --save-dev
 or `yarn`
 ```sh
 $ yarn add cubic-scroll
+```
 
 ## Basic usage
 When there is scrollable view on the page
@@ -28,8 +29,8 @@ When there is scrollable view on the page
   <div id="section-2">Section 2</div>
 </div>
 ```
-[a Here you can find full example of scrollable view](https://github.com/jolly-roger/cubic-scroll/blob/master/tests/pages/scroll-view.html)
-And for case when whole page is scrollable see [a Scrollable page](https://github.com/jolly-roger/cubic-scroll/blob/master/tests/pages/document.html)
+[Here you can find full example of scrollable view](https://github.com/jolly-roger/cubic-scroll/blob/master/tests/pages/scroll-view.html)
+And for case when whole page is scrollable see [Scrollable page](https://github.com/jolly-roger/cubic-scroll/blob/master/tests/pages/document.html)
 
 ## API
 
