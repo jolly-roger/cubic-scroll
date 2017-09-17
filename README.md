@@ -29,8 +29,8 @@ When there is scrollable view on the page
   <div id="section-2">Section 2</div>
 </div>
 ```
-[Here you can find full example of scrollable view](https://github.com/jolly-roger/cubic-scroll/blob/master/tests/pages/scroll-view.html)
-And for case when whole page is scrollable see [Scrollable page](https://github.com/jolly-roger/cubic-scroll/blob/master/tests/pages/document.html)
+[Here you can find full example of scrollable view](https://github.com/jolly-roger/cubic-scroll/blob/master/tests/pages/scroll-view.html),
+and for case when whole page is scrollable see [Scrollable page](https://github.com/jolly-roger/cubic-scroll/blob/master/tests/pages/document.html)
 
 ## API
 
