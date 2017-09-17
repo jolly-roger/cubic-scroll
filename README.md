@@ -35,7 +35,7 @@ and for case when whole page is scrollable see [Scrollable page](https://github.
 ## API
 
 ### handleLinkClick
-Scroll to anchor, that is linked to event target. It has following parameters:
+Scrolls to anchor, that is linked to event target. It has following parameters:
 * **e** - DOM click event
 * **opts** - configuration options
   * **scrollView** - scrollable view on the page, by default document body is used
@@ -43,6 +43,6 @@ Scroll to anchor, that is linked to event target. It has following parameters:
   * **accelerateFactor** - this parameter influences on the initial speed of scroll according to the formula `speed = cbrt(y * accelerateFactor)`
 
 ### scrollTo
-Scroll to passed anchor on the page. It has following parameters:
+Scrolls to passed anchor on the page. It has following parameters:
 * **targetEl** - Target anchor DOM element
 * **opts** - options, the same as for `handleLinkClick`
