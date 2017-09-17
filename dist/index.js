@@ -14,27 +14,37 @@ function getScrollingElement(documentEl) {
   return doc.documentElement ? doc.documentElement : doc.body;
 }
 
-var SPEED = 20;
+var ACCELERATE_FACTOR = 40;
 
-var scrollingElement = void 0;
-var targetTop = void 0;
-var speed = void 0;
-
-function scroll() {
-  var currentTop = scrollingElement.scrollTop;
+function calculateScrollSteps(currentTop, targetTop, accelerateFactor) {
+  var steps = [];
 
   if (currentTop !== targetTop) {
-    var nextTop = void 0;
+    var isForwardDirection = currentTop < targetTop;
+    var sign = isForwardDirection ? 1 : -1;
+    var nextY = isForwardDirection ? targetTop - currentTop : currentTop - targetTop;
+    var step = 0;
 
-    if (currentTop < targetTop) {
-      nextTop = currentTop + SPEED > targetTop ? targetTop : currentTop + speed;
-    } else {
-      nextTop = currentTop - SPEED < targetTop ? targetTop : currentTop - speed;
+    while (nextY > 0) {
+      step = Math.ceil(Math.cbrt(nextY * accelerateFactor));
+      nextY -= step;
+
+      if (nextY < 0) {
+        step += nextY;
+      }
+
+      steps.push(step * sign);
     }
+  }
 
+  return steps;
+}
+
+function scroll(index, scrollSteps, scrollingElement) {
+  if (index < scrollSteps.length) {
     window.requestAnimationFrame(function () {
-      scrollingElement.scrollTop = nextTop;
-      scroll();
+      scrollingElement.scrollTop += scrollSteps[index];
+      scroll(index + 1, scrollSteps, scrollingElement);
     });
   }
 }
@@ -42,12 +52,13 @@ function scroll() {
 function scrollTo(targetEl) {
   var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
-  scrollingElement = opts.scrollView || getScrollingElement();
-  speed = opts.speed || SPEED;
-  targetTop = targetEl.offsetTop - (opts.marginTop || 0);
+  var scrollingElement = opts.scrollView || getScrollingElement();
+  var accelerateFactor = opts.accelerateFactor || ACCELERATE_FACTOR;
+  var targetTop = targetEl.offsetTop - (opts.marginTop || 0);
 
   if (scrollingElement && typeof targetTop === 'number') {
-    scroll();
+    var scrollSteps = calculateScrollSteps(scrollingElement.scrollTop, targetTop, accelerateFactor);
+    scroll(0, scrollSteps, scrollingElement);
   }
 }
 

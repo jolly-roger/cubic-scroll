@@ -1,39 +1,49 @@
 import getScrollingElement from './getScrollingElement';
 
-const SPEED = 20;
+const ACCELERATE_FACTOR = 40;
 
-let scrollingElement;
-let targetTop;
-let speed;
-
-function scroll() {
-  const currentTop = scrollingElement.scrollTop;
+function calculateScrollSteps(currentTop, targetTop, accelerateFactor) {
+  const steps = [];
 
   if (currentTop !== targetTop) {
-    let nextTop;
+    const isForwardDirection = (currentTop < targetTop);
+    const sign = isForwardDirection ? 1 : -1;
+    let nextY = isForwardDirection ? (targetTop - currentTop) : (currentTop - targetTop);
+    let step = 0;
 
-    if (currentTop < targetTop) {
-      nextTop = ((currentTop + SPEED) > targetTop) ?
-        targetTop : (currentTop + speed);
-    } else {
-      nextTop = ((currentTop - SPEED) < targetTop) ?
-        targetTop : (currentTop - speed);
+    while (nextY > 0) {
+      step = Math.ceil(Math.cbrt(nextY * accelerateFactor));
+      nextY -= step;
+
+      if (nextY < 0) {
+        step += nextY;
+      }
+
+      steps.push(step * sign);
     }
+  }
 
+  return steps;
+}
+
+function scroll(index, scrollSteps, scrollingElement) {
+  if (index < scrollSteps.length) {
     window.requestAnimationFrame(() => {
-      scrollingElement.scrollTop = nextTop;
-      scroll();
+      scrollingElement.scrollTop += scrollSteps[index];
+      scroll(index + 1, scrollSteps, scrollingElement);
     });
   }
 }
 
 export function scrollTo(targetEl, opts = {}) {
-  scrollingElement = opts.scrollView || getScrollingElement();
-  speed = opts.speed || SPEED;
-  targetTop = targetEl.offsetTop - (opts.marginTop || 0);
+  const scrollingElement = opts.scrollView || getScrollingElement();
+  const accelerateFactor = opts.accelerateFactor || ACCELERATE_FACTOR;
+  const targetTop = targetEl.offsetTop - (opts.marginTop || 0);
 
   if (scrollingElement && typeof targetTop === 'number') {
-    scroll();
+    const scrollSteps = calculateScrollSteps(scrollingElement.scrollTop,
+      targetTop, accelerateFactor);
+    scroll(0, scrollSteps, scrollingElement);
   }
 }
 

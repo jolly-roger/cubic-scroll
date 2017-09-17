@@ -1,7 +1,7 @@
 {
   "name": "fluid-scroll",
   "version": "1.0.0",
-  "description": "Modern smooth (fluid) scroll implementation based on requestAnimationFrame",
+  "description": "Extremely lightweight modern implementation of scroll with easing effect based on cubic function and rendering based on requestAnimationFrame",
   "main": "dist/index.js",
   "scripts": {
     "test": "",
@@ -13,8 +13,11 @@
   },
   "keywords": [
     "smooth",
-    "fluid",
+    "ease",
+    "easing",
     "scroll",
+    "cubic",
+    "function",
     "requestAnimationFrame"
   ],
   "author": {

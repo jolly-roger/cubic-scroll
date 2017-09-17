@@ -1,16 +1,45 @@
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="document.css">
+    <style>
+      .menu {
+        display: flex;
+        flex-direction: row;
+        position: fixed;
+        top: 0;
+      }
+      
+      .content {
+        display: flex;
+        flex-direction: column;
+        margin-top: 500px;
+      }
+      
+      #section-0, #section-1, #section-2 {
+        height: 1000px;
+      }
+      
+      #section-0 {
+        background-color: #00FFFF;
+      }
+      
+      #section-1 {
+        background-color: #00FF00;
+      }
+      
+      #section-2 {
+        background-color: #FFFF00;
+      }
+    </style>
     <script type="text/javascript" src="../../dist/index.js" ></script>
   </head>
   <body>
     <div class="menu">
       <a href="#section-0"
-        onclick="window.fluidScroll.handleLinkClick(event, {marginTop: '30'})">Link 0</a>
+        onclick="fluidScroll.handleLinkClick(event, {marginTop: '30'})">Link 0</a>
       <a href="#section-1"
-        onclick="window.fluidScroll.handleLinkClick(event, {marginTop: '30'})">Link 1</a>
+        onclick="fluidScroll.handleLinkClick(event, {marginTop: '30'})">Link 1</a>
       <a href="#section-2"
-        onclick="window.fluidScroll.handleLinkClick(event, {marginTop: '30'})">Link 2</a>
+        onclick="fluidScroll.handleLinkClick(event, {marginTop: '30'})">Link 2</a>
     </div>
     <div class="content">
       <div id="section-0">Section 0</div>
