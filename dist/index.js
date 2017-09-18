@@ -14,6 +14,10 @@ function getScrollingElement(documentEl) {
   return doc.documentElement ? doc.documentElement : doc.body;
 }
 
+function getRequestAnimationFrame() {
+  return window.requestAnimationFrame ? window.requestAnimationFrame : window.webkitRequestAnimationFrame;
+}
+
 var ACCELERATE_FACTOR = 40;
 
 function calculateScrollSteps(currentTop, targetTop, accelerateFactor) {
@@ -42,7 +46,7 @@ function calculateScrollSteps(currentTop, targetTop, accelerateFactor) {
 
 function scroll(index, scrollSteps, scrollingElement) {
   if (index < scrollSteps.length) {
-    window.requestAnimationFrame(function () {
+    getRequestAnimationFrame()(function () {
       scrollingElement.scrollTop += scrollSteps[index];
       scroll(index + 1, scrollSteps, scrollingElement);
     });

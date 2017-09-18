@@ -1,4 +1,5 @@
 import getScrollingElement from './getScrollingElement';
+import getRequestAnimationFrame from './getRequestAnimationFrame';
 
 const ACCELERATE_FACTOR = 40;
 
@@ -28,7 +29,7 @@ function calculateScrollSteps(currentTop, targetTop, accelerateFactor) {
 
 function scroll(index, scrollSteps, scrollingElement) {
   if (index < scrollSteps.length) {
-    window.requestAnimationFrame(() => {
+    getRequestAnimationFrame()(() => {
       scrollingElement.scrollTop += scrollSteps[index];
       scroll(index + 1, scrollSteps, scrollingElement);
     });
