@@ -58,7 +58,7 @@ function scrollTo(targetEl) {
 
   var scrollingElement = opts.scrollView || getScrollingElement();
   var accelerateFactor = opts.accelerateFactor || ACCELERATE_FACTOR;
-  var targetTop = targetEl.offsetTop - (opts.marginTop || 0);
+  var targetTop = targetEl ? targetEl.offsetTop - (opts.marginTop || 0) : 0;
 
   if (scrollingElement && typeof targetTop === 'number') {
     var scrollSteps = calculateScrollSteps(scrollingElement.scrollTop, targetTop, accelerateFactor);
