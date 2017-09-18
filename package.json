@@ -1,6 +1,6 @@
 {
   "name": "cubic-scroll",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Extremely lightweight modern implementation of scroll with easing effect based on cubic function and rendering based on requestAnimationFrame",
   "main": "dist/index.js",
   "scripts": {
