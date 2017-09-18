@@ -39,7 +39,7 @@ function scroll(index, scrollSteps, scrollingElement) {
 export function scrollTo(targetEl, opts = {}) {
   const scrollingElement = opts.scrollView || getScrollingElement();
   const accelerateFactor = opts.accelerateFactor || ACCELERATE_FACTOR;
-  const targetTop = targetEl.offsetTop - (opts.marginTop || 0);
+  const targetTop = targetEl ? targetEl.offsetTop - (opts.marginTop || 0) : 0;
 
   if (scrollingElement && typeof targetTop === 'number') {
     const scrollSteps = calculateScrollSteps(scrollingElement.scrollTop,
