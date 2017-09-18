@@ -40,7 +40,7 @@ Scrolls to anchor, that is linked to event target. It has following parameters:
 * **opts** - configuration options
   * **scrollView** - scrollable view on the page, by default document body is used
   * **marginTop** - margin from the top of the scroll view, it is useful if you have sticky top menu
-  * **accelerateFactor** - this parameter influences on the initial speed of scroll according to the formula `speed = cbrt(y * accelerateFactor)`
+  * **accelerateFactor** - this parameter influences on the initial speed of scroll according to the formula `speed = cbrt(y * accelerateFactor)`, default value is `40`
 
 ### scrollTo
 Scrolls to passed anchor on the page. It has following parameters:
