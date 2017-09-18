@@ -44,12 +44,14 @@ function calculateScrollSteps(currentTop, targetTop, accelerateFactor) {
   return steps;
 }
 
-function scroll(index, scrollSteps, scrollingElement) {
+function scroll(index, scrollSteps, scrollingElement, callback) {
   if (index < scrollSteps.length) {
     getRequestAnimationFrame()(function () {
       scrollingElement.scrollTop += scrollSteps[index];
-      scroll(index + 1, scrollSteps, scrollingElement);
+      scroll(index + 1, scrollSteps, scrollingElement, callback);
     });
+  } else {
+    callback();
   }
 }
 
@@ -57,12 +59,13 @@ function scrollTo(targetEl) {
   var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
   var scrollingElement = opts.scrollView || getScrollingElement();
-  var accelerateFactor = opts.accelerateFactor || ACCELERATE_FACTOR;
+  var accelerateFactor = typeof opts.accelerateFactor === 'number' ? opts.accelerateFactor : ACCELERATE_FACTOR;
+  var callback = typeof opts.callback === 'function' ? opts.callback : function () {};
   var targetTop = targetEl ? targetEl.offsetTop - (opts.marginTop || 0) : 0;
 
   if (scrollingElement && typeof targetTop === 'number') {
     var scrollSteps = calculateScrollSteps(scrollingElement.scrollTop, targetTop, accelerateFactor);
-    scroll(0, scrollSteps, scrollingElement);
+    scroll(0, scrollSteps, scrollingElement, callback);
   }
 }
 

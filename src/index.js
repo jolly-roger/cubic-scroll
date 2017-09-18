@@ -27,24 +27,29 @@ function calculateScrollSteps(currentTop, targetTop, accelerateFactor) {
   return steps;
 }
 
-function scroll(index, scrollSteps, scrollingElement) {
+function scroll(index, scrollSteps, scrollingElement, callback) {
   if (index < scrollSteps.length) {
     getRequestAnimationFrame()(() => {
       scrollingElement.scrollTop += scrollSteps[index];
-      scroll(index + 1, scrollSteps, scrollingElement);
+      scroll(index + 1, scrollSteps, scrollingElement, callback);
     });
+  } else {
+    callback();
   }
 }
 
 export function scrollTo(targetEl, opts = {}) {
   const scrollingElement = opts.scrollView || getScrollingElement();
-  const accelerateFactor = opts.accelerateFactor || ACCELERATE_FACTOR;
+  const accelerateFactor = (typeof opts.accelerateFactor === 'number') ?
+    opts.accelerateFactor : ACCELERATE_FACTOR;
+  const callback = (typeof opts.callback === 'function') ?
+    opts.callback : (() => {});
   const targetTop = targetEl ? targetEl.offsetTop - (opts.marginTop || 0) : 0;
 
   if (scrollingElement && typeof targetTop === 'number') {
     const scrollSteps = calculateScrollSteps(scrollingElement.scrollTop,
       targetTop, accelerateFactor);
-    scroll(0, scrollSteps, scrollingElement);
+    scroll(0, scrollSteps, scrollingElement, callback);
   }
 }
 
