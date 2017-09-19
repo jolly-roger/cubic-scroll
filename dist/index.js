@@ -65,7 +65,9 @@ function scrollTo(targetEl) {
 
   if (scrollingElement && typeof targetTop === 'number') {
     var scrollSteps = calculateScrollSteps(scrollingElement.scrollTop, targetTop, accelerateFactor);
-    scroll(0, scrollSteps, scrollingElement, callback);
+    scroll(0, scrollSteps, scrollingElement, function () {
+      return callback(targetEl);
+    });
   }
 }
 

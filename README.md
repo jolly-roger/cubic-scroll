@@ -15,13 +15,28 @@ $ yarn add cubic-scroll
 ## Basic usage
 When there is scrollable view on the page
 ```html
+<script type="text/javascript">
+  function clickHandler(e) {
+    var sections = document.querySelector('.content').children;
+
+    for (var i in Object.keys(sections)) {
+      sections[i].className = '';
+    }
+
+    fluidScroll.handleLinkClick(e, {
+      scrollView: document.querySelector('.content'),
+      callback: function(targetEl) {
+        targetEl.className = 'selected';
+    }});
+  }
+</script>
 <div class="menu">
   <a href="#section-0"
-    onclick="fluidScroll.handleLinkClick(event, {scrollView: document.querySelector('.content')})">Link 0</a>
+    onclick="clickHandler(event)">Link 0</a>
   <a href="#section-1"
-    onclick="fluidScroll.handleLinkClick(event, {scrollView: document.querySelector('.content')})">Link 1</a>
+    onclick="clickHandler(event)">Link 1</a>
   <a href="#section-2"
-    onclick="fluidScroll.handleLinkClick(event, {scrollView: document.querySelector('.content')})">Link 2</a>
+    onclick="clickHandler(event)">Link 2</a>
 </div>
 <div class="content">
   <div id="section-0">Section 0</div>
@@ -41,7 +56,9 @@ Scrolls to anchor, that is linked to event target. It has following parameters:
   * **scrollView** - scrollable view on the page, by default document body is used
   * **marginTop** - margin from the top of the scroll view, it is useful if you have sticky top menu
   * **accelerateFactor** - this parameter influences on the initial speed of scroll according to the formula `speed = cbrt(y * accelerateFactor)`, default value is `40`
-  * **callback** - function that will be called after last animation frame
+  * **callback** - function that will be called after last animation frame, scroll target element will be passed as parameter, it is useful when you need to decorate it at
+the end of scroll, see examples [scrollable page](https://github.com/jolly-roger/cubic-scroll/blob/master/tests/pages/scroll-view.html) and
+[scrollable view](https://github.com/jolly-roger/cubic-scroll/blob/master/tests/pages/document.html)
 
 ### scrollTo
 Scrolls to passed anchor on the page. It has following parameters:

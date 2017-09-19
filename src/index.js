@@ -49,7 +49,7 @@ export function scrollTo(targetEl, opts = {}) {
   if (scrollingElement && typeof targetTop === 'number') {
     const scrollSteps = calculateScrollSteps(scrollingElement.scrollTop,
       targetTop, accelerateFactor);
-    scroll(0, scrollSteps, scrollingElement, callback);
+    scroll(0, scrollSteps, scrollingElement, () => callback(targetEl));
   }
 }
 
